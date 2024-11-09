@@ -1,0 +1,6 @@
+wheel
+pytz
+python-dotenv
+mysql-connector-python
+adafruit-circuitpython-rfm9x
+adafruit-circuitpython-bme280

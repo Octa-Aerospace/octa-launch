@@ -94,7 +94,7 @@ if __name__ == "__main__":
         #
         from modules.Buzzer import Buzzer
         from modules.BME280 import BME280
-        from modules.LoRa.lora import LoRa
+        from packages.cansat.src.modules.lora import LoRa
 
     device = OctaSat(dummy)
     device.init()
