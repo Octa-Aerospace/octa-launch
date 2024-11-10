@@ -13,7 +13,7 @@ except ImportError:
 
 
 class Buzzer(BuzzerInterface):
-  def __init__(self, pin: int, silent=False):
+  def __init__(self, pin: int, silent=False, muted=False):
     self.pin = pin
     self.silent = silent
     self.duty_cycle = 50 # default duty cycle for normal volume
@@ -21,6 +21,10 @@ class Buzzer(BuzzerInterface):
     if silent:
       self.duty_cycle = 10 # reduce duty cycle to make buzzer quieter
       logger.info("Buzzer set to silent mode")
+    
+    if muted:
+      self.duty_cycle = 0
+      logger.info("Buzzer set to muted mode")
 
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)

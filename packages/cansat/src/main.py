@@ -18,6 +18,7 @@ def main():
     parser = argparse.ArgumentParser(description='OctaSat Main Program')
     parser.add_argument('--dummy', action='store_true', help='Run in dummy mode (no hardware)')
     parser.add_argument('--silent', action='store_true', help='Run with buzzer at lower volume')
+    parser.add_argument('--muted', action='store_true', help='Run with buzzer muted')
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO)
@@ -35,7 +36,7 @@ def main():
         buzzer = MockBuzzer()
         lora = MockLoRa()
     else:
-        buzzer = Buzzer(buzzer_pin, silent=args.silent)
+        buzzer = Buzzer(buzzer_pin, silent=args.silent, muted=args.muted)
         lora = LoRa(radio_freq_mhz, baudrate)
 
     # Initialize OctaSat device
