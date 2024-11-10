@@ -2,9 +2,10 @@ import adafruit_rfm9x
 import digitalio
 import board
 import busio
-import time as t
+#
+from modules.interfaces.lora_interface import LoraInterface
 
-class LoRa:
+class LoRa(LoraInterface):
   def __init__(self):
     self.BAUDRATE = 1000000 # min 1Mhz; max 10MHz
     self.RADIO_FREQ_MHZ = 915.0 # 915 Mhz
@@ -28,7 +29,6 @@ class LoRa:
       print(f'[ ! ] {e}')
       print(f'[ ! ] Packet not sent! >> {payload}')
 
-
   def receive_packet_radio(self):
     self.rfm9x.tx_power = 23
     times = 0
@@ -46,8 +46,3 @@ class LoRa:
 
     else:
         return '[ ! ] The conection is interrupted.'
-
-if __name__ == "__main__":
-  lora = LoRa()
-  lora.begin_packet_radio()
-  lora.receive_packet_radio()

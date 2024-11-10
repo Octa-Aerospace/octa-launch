@@ -1,8 +1,13 @@
-import RPi.GPIO as GPIO
 from time import sleep
-from sys import exit
+#
+from modules.interfaces.buzzer_interface import BuzzerInterface
 
-class Buzzer:
+try:
+  import RPi.GPIO as GPIO
+except ImportError:
+  GPIO = None
+
+class Buzzer(BuzzerInterface):
   def __init__(self, pin):
     self.pin = pin
     GPIO.setwarnings(False)
