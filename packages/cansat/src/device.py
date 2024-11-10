@@ -10,13 +10,14 @@ from modules.lora import LoRa
 from modules.buzzer import Buzzer
 
 class OctaSat:
-    def __init__(self, dummy=False, lora=None, bme280=None, buzzer=None, timezone='America/Santiago'):
+    def __init__(self, dummy=False, lora=None, bme280=None, buzzer=None, timezone='America/Santiago', notify=False):
         self.dummy = dummy
         self.lora = lora
         self.buzzer = buzzer
         # self.bme280 = bme280
         self.data = {}
         self.timezone = pytz.timezone(timezone)
+        self.notify = notify
         self.logger = logging.getLogger(__name__)
 
     def init(self):
