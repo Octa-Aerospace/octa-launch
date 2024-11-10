@@ -1,7 +1,7 @@
 #
 from modules.interfaces.lora_interface import LoraInterface
 
-class MockLora(LoraInterface):
+class MockLoRa(LoraInterface):
     def begin_packet_radio(self, payload):
         print(f'[mock-lora] Mock sending payload: {payload}')
 

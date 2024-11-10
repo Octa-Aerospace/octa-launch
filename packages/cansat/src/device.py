@@ -4,7 +4,7 @@ import logging
 from datetime import datetime
 #
 from modules.interfaces.lora_interface import LoraInterface
-from modules.mocks.mock_lora import MockLora
+from modules.mocks.mock_lora import MockLoRa
 from modules.mocks.mock_buzzer import MockBuzzer
 from modules.lora import LoRa
 from modules.buzzer import Buzzer
@@ -12,8 +12,8 @@ from modules.buzzer import Buzzer
 class OctaSat:
     def __init__(self, dummy=False, lora=None, bme280=None, buzzer=None, timezone='America/Santiago'):
         self.dummy = dummy
-        self.lora = lora or (MockLora() if dummy else LoRa())
-        self.buzzer = buzzer or (MockBuzzer() if dummy else Buzzer())
+        self.lora = lora
+        self.buzzer = buzzer
         # self.bme280 = bme280
         self.data = {}
         self.timezone = pytz.timezone(timezone)

@@ -22,26 +22,27 @@ TIMEZONE=America/Santiago
 
 ---
 
-### **9. Summary of Changes**
+## TODO 
 
-- **Used `python-dotenv`** to load environment variables from a `.env` file.
-- **Updated `main.py`** to read configuration from environment variables and pass them to module constructors.
-- **Modified Modules** (`LoRa`, `BME280`, `Buzzer`) to accept configuration parameters.
-- **Ensured Default Values** are provided if environment variables are missing.
-- **Excluded `.env`** from version control using `.gitignore`.
-- **Documented Configuration** in `README.md`.
+- [ ] Implement poetry for dependency and env management
 
----
 
-### **10. Testing the Changes**
+## Dev notes so far
 
-Before running the application, ensure that:
+### venv steps
 
-- The `.env` file is correctly set up.
-- All environment variables have valid values.
-- The hardware is properly connected (if not running in dummy mode).
+1. python -m venv base 
+2. source base/bin/activate
 
-**Run the application:**
 
-```bash
-python src/octasat/main.py
+### deps
+
+1. python -m pip install RPi.GPIO
+2. python -m pip install adafruit-circuitpython-rfm9x
+3. install the following with only pip
+
+```
+  python-dotenv
+  pytz
+```
+

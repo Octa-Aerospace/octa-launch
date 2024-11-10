@@ -3,12 +3,14 @@ import logging
 #
 from modules.interfaces.buzzer_interface import BuzzerInterface
 
+logger = logging.getLogger(__name__)
+
 try:
   import RPi.GPIO as GPIO
 except ImportError:
+  logger.warning("RPi.GPIO module not found. Buzzer functionality will be disabled.")
   GPIO = None
 
-logger = logging.getLogger(__name__)
 
 class Buzzer(BuzzerInterface):
   def __init__(self, pin: int):

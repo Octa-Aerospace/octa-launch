@@ -13,7 +13,13 @@ class LoRa(LoraInterface):
     self.CS = digitalio.DigitalInOut(board.CE1)
     self.RESET = digitalio.DigitalInOut(board.D25)
     self.spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
-    self.rfm9x = adafruit_rfm9x.RFM9x(self.spi, self.CS, self.RESET, radio_freq_mhz, baudrate)
+    self.rfm9x = adafruit_rfm9x.RFM9x(
+      self.spi,
+      self.CS,
+      self.RESET,
+      radio_freq_mhz,
+      baudrate=baudrate # not a positional arg, passing as a keyword arg
+    )
 
   def begin_packet_radio(self, payload):
     if len(payload) > 252:
