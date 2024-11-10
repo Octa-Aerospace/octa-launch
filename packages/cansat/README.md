@@ -24,7 +24,7 @@ TIMEZONE=America/Santiago
 
 ## TODO 
 
-- [ ] Implement poetry for dependency and env management
+- [ ] Implement poetry for dependency and env management (maybe just a setup.py file is better and enough)
 
 
 ## Dev notes so far
@@ -46,3 +46,41 @@ TIMEZONE=America/Santiago
   pytz
 ```
 
+### Running on startups setup
+
+1. giving permission
+
+  ```bash
+  chmod +x /home/pi/octasat/src/octasat/main.py
+  ```
+
+2. test the script manually
+
+  ```bash
+  /home/pi/octasat/src/octasat/main.py
+  ```
+
+3. create a service file
+
+  ```bash
+  sudo nano /etc/systemd/system/octasat.service
+  ```
+
+4. add the content of the startup.service to that file and save.
+5. reload systemd to Recognize the New Service
+  
+  ```bash
+  sudo systemctl daemon-reload
+  ```
+
+6. Enable the Service to Start at Boot
+
+  ```bash
+  sudo systemctl enable octasat.service
+  ```
+
+7. check the status of the service
+
+  ```bash
+  sudo systemctl status octasat.service
+  ```
