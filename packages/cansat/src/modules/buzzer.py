@@ -16,6 +16,7 @@ class Buzzer(BuzzerInterface):
   def __init__(self, pin: int, silent=False, muted=False):
     self.pin = pin
     self.silent = silent
+    self.muted = muted
     self.duty_cycle = 70 # default duty cycle for semi-loud volume (0-100)
 
     if silent:
