@@ -2,8 +2,11 @@ import adafruit_rfm9x
 import digitalio
 import board
 import busio
+import logging
 #
 from modules.interfaces.lora_interface import LoraInterface
+
+logger = logging.getLogger(__name__)
 
 class LoRa(LoraInterface):
   def __init__(self, radio_freq_mhz: float, baudrate: int):

@@ -49,7 +49,6 @@ def main():
     try:
         while True:
             device.make_read()
-            device.save_data()
             device.send_payload()
             sleep(1)
     except KeyboardInterrupt:

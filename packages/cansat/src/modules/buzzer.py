@@ -1,4 +1,5 @@
 from time import sleep
+import logging
 #
 from modules.interfaces.buzzer_interface import BuzzerInterface
 
@@ -6,6 +7,8 @@ try:
   import RPi.GPIO as GPIO
 except ImportError:
   GPIO = None
+
+logger = logging.getLogger(__name__)
 
 class Buzzer(BuzzerInterface):
   def __init__(self, pin: int):
