@@ -6,13 +6,11 @@ import busio
 from modules.interfaces.lora_interface import LoraInterface
 
 class LoRa(LoraInterface):
-  def __init__(self):
-    self.BAUDRATE = 1000000 # min 1Mhz; max 10MHz
-    self.RADIO_FREQ_MHZ = 915.0 # 915 Mhz
+  def __init__(self, radio_freq_mhz: float, baudrate: int):
     self.CS = digitalio.DigitalInOut(board.CE1)
     self.RESET = digitalio.DigitalInOut(board.D25)
     self.spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
-    self.rfm9x = adafruit_rfm9x.RFM9x(self.spi, self.CS, self.RESET, self.RADIO_FREQ_MHZ, baudrate=self.BAUDRATE)
+    self.rfm9x = adafruit_rfm9x.RFM9x(self.spi, self.CS, self.RESET, radio_freq_mhz, baudrate)
 
   def begin_packet_radio(self, payload):
     if len(payload) > 252:

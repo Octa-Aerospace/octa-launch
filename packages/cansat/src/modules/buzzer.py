@@ -8,7 +8,7 @@ except ImportError:
   GPIO = None
 
 class Buzzer(BuzzerInterface):
-  def __init__(self, pin):
+  def __init__(self, pin: int):
     self.pin = pin
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)

@@ -1,7 +1,9 @@
 #
+import os
 import argparse
 import logging
 from time import sleep
+from dotenv import load_dotenv
 #
 from device import OctaSat
 from modules.buzzer import Buzzer
@@ -11,6 +13,8 @@ from modules.mocks.mock_buzzer import MockBuzzer
 from modules.mocks.mock_lora import MockLoRa
 
 def main():
+    load_dotenv()
+
     parser = argparse.ArgumentParser(description='OctaSat Main Program')
     parser.add_argument('--dummy', action='store_true', help='Run in dummy mode (no hardware)')
     args = parser.parse_args()
@@ -18,16 +22,28 @@ def main():
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
 
+    # Reading config from env variables
+    buzzer_pin = int(os.getenv('BUZZER_PIN', 12))
+    # i2c_address = int(os.getenv('I2C_ADDRESS', '0x68'), 16)
+    radio_freq_mhz = float(os.getenv('RADIO_FREQ_MHZ', 915))
+    baudrate = int(os.getenv('BAUDRATE', 1000000))
+    timezone = os.getenv('TIMEZONE', 'America/Santiago')
+
     # Initialize modules
     if args.dummy:
         buzzer = MockBuzzer()
         lora = MockLoRa()
     else:
-        buzzer = Buzzer(pin=12)
-        lora = LoRa()
+        buzzer = Buzzer(buzzer_pin)
+        lora = LoRa(radio_freq_mhz, baudrate)
 
     # Initialize OctaSat device
-    device = OctaSat(dummy=args.dummy, buzzer=buzzer, lora=lora)
+    device = OctaSat(
+        dummy=args.dummy,
+        buzzer=buzzer,
+        lora=lora,
+        timezone=timezone
+    )
     device.init()
 
     try:
