@@ -20,13 +20,13 @@ class LoRa:
     self.rfm9x.tx_power = 23 # min 5dB; max 23dB
 
     try:
-      response = self.rfm9x.send(bytes(payload, "utf-8"))
-      print(f'[ ! ] response {response}')
-      if response:
-        print(f'[ ! ] Packet sent >> {payload}')
+      self.rfm9x.send(bytes('heyyy', "UTF-8"))
+      print(f'[ OK ] Packet sent! >> {payload}')
     except Exception as e:
       print(f'[ ! ] {e}')
       print(f'[ ! ] Packet not sent! >> {payload}')
+      return False
+    return True
 
   def receive_packet_radio(self):
     self.rfm9x.tx_power = 23
@@ -35,25 +35,25 @@ class LoRa:
     packet = self.rfm9x.receive(timeout=3.0)
 
     if packet is not None:
-        packet_text = (packet)
+        packet_text = str(packet, 'ascii')
         rssi = self.rfm9x.last_rssi
         times += 1
 
+        # print(f'[ OK ] Packet received! >> {packet}')
         print(f'[ OK ] Packet received! >> {packet_text}')
         print(f'[ OK ] RSSI: {rssi}')
         print(f'[ OK ] Times: {times}\n')
         # Upload to database here
     else:
         print('[ ! ] No packet received!\n')
-
 if __name__ == "__main__":
   lora = LoRa()
 #  lora.begin_packet_radio()
-  while True:
+while True:
     try:
-     lora.begin_packet_radio()
-#      lora.receive_packet_radio()
-     t.sleep(1)
+#      lora.begin_packet_radio()
+      lora.receive_packet_radio()
+      t.sleep(1)
     except KeyboardInterrupt:
       print('\n[ OK ] Exiting...')
       break

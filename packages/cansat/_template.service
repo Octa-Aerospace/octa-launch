@@ -1,0 +1,13 @@
+[Unit]
+Description=OctaSat Cansat Startup Service
+After=network.target
+
+[Service]
+Type=simple
+User=your_username
+WorkingDirectory=/path/to/your/project
+ExecStart=/bin/bash /path/to/your/project/run_my_script.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

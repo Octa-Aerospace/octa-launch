@@ -2,16 +2,24 @@ import adafruit_rfm9x
 import digitalio
 import board
 import busio
-import time as t
+import logging
+#
+from modules.interfaces.lora_interface import LoraInterface
 
-class LoRa:
-  def __init__(self):
-    self.BAUDRATE = 1000000 # min 1Mhz; max 10MHz
-    self.RADIO_FREQ_MHZ = 915.0 # 915 Mhz
+logger = logging.getLogger(__name__)
+
+class LoRa(LoraInterface):
+  def __init__(self, radio_freq_mhz: float, baudrate: int):
     self.CS = digitalio.DigitalInOut(board.CE1)
     self.RESET = digitalio.DigitalInOut(board.D25)
     self.spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
-    self.rfm9x = adafruit_rfm9x.RFM9x(self.spi, self.CS, self.RESET, self.RADIO_FREQ_MHZ, baudrate=self.BAUDRATE)
+    self.rfm9x = adafruit_rfm9x.RFM9x(
+      self.spi,
+      self.CS,
+      self.RESET,
+      radio_freq_mhz,
+      baudrate=baudrate # not a positional arg, passing as a keyword arg
+    )
 
   def begin_packet_radio(self, payload):
     if len(payload) > 252:
@@ -20,14 +28,13 @@ class LoRa:
     self.rfm9x.tx_power = 23 # min 5dB; max 23dB
 
     try:
-      response = self.rfm9x.send(bytes(payload, "utf-8"))
-      print(f'[ ! ] response {response}')
-      if response:
-        print(f'[ ! ] Packet sent >>\n{payload}')
+      self.rfm9x.send(bytes(payload, "utf-8"))
+      logger.info(f"[ ok ] packet sent: \n{payload}\n")
+      return True
     except Exception as e:
-      print(f'[ ! ] {e}')
-      print(f'[ ! ] Packet not sent! >> {payload}')
-
+      logger.exception(f"[ ! ] Error during packet transmission: {e}")
+      logger.exception(f"[ ! ] packet not sent: {payload}")
+      return False
 
   def receive_packet_radio(self):
     self.rfm9x.tx_power = 23
@@ -46,8 +53,3 @@ class LoRa:
 
     else:
         return '[ ! ] The conection is interrupted.'
-
-if __name__ == "__main__":
-  lora = LoRa()
-  lora.begin_packet_radio()
-  lora.receive_packet_radio()
