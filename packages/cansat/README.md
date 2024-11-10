@@ -25,7 +25,7 @@ TIMEZONE=America/Santiago
 ## TODO 
 
 - [ ] Implement poetry for dependency and env management (maybe just a setup.py file is better and enough)
-
+- [ ] Automate the startup setup process in a script
 
 ## Dev notes so far
 
@@ -51,7 +51,8 @@ TIMEZONE=America/Santiago
 1. giving permission
 
   ```bash
-  chmod +x /home/pi/octasat/src/octasat/main.py
+  cp -R /path-to-repo/packages/cansat/_startup.sh startup.sh
+  chmod +x /path-to-repo/packages/cansat/startup.sh
   ```
 
 2. test the script manually
@@ -66,7 +67,7 @@ TIMEZONE=America/Santiago
   sudo nano /etc/systemd/system/octasat.service
   ```
 
-4. add the content of the startup.service to that file and save.
+4. add the content of the _template.service to that file and save.
 5. reload systemd to Recognize the New Service
   
   ```bash
