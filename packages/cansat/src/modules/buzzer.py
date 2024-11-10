@@ -25,7 +25,7 @@ class Buzzer(BuzzerInterface):
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(self.pin, GPIO.OUT)
-    self.pwm = GPIO.PWM(self.pin, 1)
+    self.pwm = GPIO.PWM(self.pin, 1) # frequency is set later
 
   def init(self):
     for frequency in [440, 523, 600, 990]:
@@ -33,8 +33,8 @@ class Buzzer(BuzzerInterface):
       sleep(0.0005)
   
   def play_tone(self, frequency, duration):
-    self.pwm.start(50) # 50% duty cycle
     self.pwm.ChangeFrequency(frequency)
+    self.pwm.start(self.duty_cycle)
     sleep(duration)
     self.pwm.stop()
 
@@ -42,5 +42,5 @@ class Buzzer(BuzzerInterface):
     for frequency in [990, 600, 523, 440]:
       self.play_tone(frequency, 0.1)
       sleep(0.0005)
-    print("[!] Buzzer -- cleaning up GPIO")
+    logger.info("Cleaning up GPIO for buzzer")
     GPIO.cleanup(self.pin)
