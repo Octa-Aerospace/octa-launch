@@ -47,7 +47,7 @@ class Buzzer(BuzzerInterface):
     """ Play a short beep sound """
     beep_freq = 1000
     if self.silent: beep_freq = 25
-    if self.muted: beep_freq = 0
+    if self.muted: beep_freq = 20
     self.play_tone(beep_freq, 0.1)
 
   def destroy(self):

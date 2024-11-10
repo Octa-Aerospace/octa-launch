@@ -29,7 +29,7 @@ class LoRa(LoraInterface):
 
     try:
       self.rfm9x.send(bytes(payload, "utf-8"))
-      logger.info(f"[ ok ] packet sent: {payload}")
+      logger.info(f"[ ok ] packet sent: \n{payload}\n")
       return True
     except Exception as e:
       logger.exception(f"[ ! ] Error during packet transmission: {e}")
