@@ -26,12 +26,6 @@ class OctaSat:
         else:
             self.logger.warning('Buzzer not initialized.')
 
-        if not self.dummy:
-            self.lora = LoRa()
-            self.buzzer = Buzzer(self.BUZZER_PIN)
-            # self.bme280 = BME280()
-            self.buzzer.init()
-
     def make_read(self):
         """ Collect data from sensors """
         if self.dummy:
