@@ -19,6 +19,8 @@ def main():
     parser.add_argument('--dummy', action='store_true', help='Run in dummy mode (no hardware)')
     parser.add_argument('--silent', action='store_true', help='Run with buzzer at lower volume')
     parser.add_argument('--muted', action='store_true', help='Run with buzzer muted')
+    parser.add_argument('--notify', action='store_true', help='Play a sound when a packet is successfully sent')
+
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO)
@@ -44,7 +46,8 @@ def main():
         dummy=args.dummy,
         buzzer=buzzer,
         lora=lora,
-        timezone=timezone
+        timezone=timezone,
+        notify=args.notify
     )
     device.init()
 

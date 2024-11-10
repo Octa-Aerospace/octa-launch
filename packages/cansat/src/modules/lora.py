@@ -28,13 +28,13 @@ class LoRa(LoraInterface):
     self.rfm9x.tx_power = 23 # min 5dB; max 23dB
 
     try:
-      response = self.rfm9x.send(bytes(payload, "utf-8"))
-      print(f'[ ! ] response {response}')
-      if response:
-        print(f'[ ! ] Packet sent >>\n{payload}')
+      self.rfm9x.send(bytes(payload, "utf-8"))
+      logger.info(f"[ ok ] packet sent: {payload}")
+      return True
     except Exception as e:
-      print(f'[ ! ] {e}')
-      print(f'[ ! ] Packet not sent! >> {payload}')
+      logger.exception(f"[ ! ] Error during packet transmission: {e}")
+      logger.exception(f"[ ! ] packet not sent: {payload}")
+      return False
 
   def receive_packet_radio(self):
     self.rfm9x.tx_power = 23

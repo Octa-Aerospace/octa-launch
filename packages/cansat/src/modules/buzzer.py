@@ -41,6 +41,13 @@ class Buzzer(BuzzerInterface):
     self.pwm.start(self.duty_cycle)
     sleep(duration)
     self.pwm.stop()
+  
+  def beep(self):
+    """ Play a short beep sound """
+    beep_freq = 1000
+    if self.silent: beep_freq = 25
+    if self.muted: beep_freq = 0
+    self.play_tone(beep_freq, 0.1)
 
   def destroy(self):
     for frequency in [990, 600, 523, 440]:
