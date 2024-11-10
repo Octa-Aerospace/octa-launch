@@ -32,12 +32,13 @@ class OctaSat:
             return self.dummy_read()
 
         # temperature, humidity, pressure, altitude = self.bme280.get_packed_data()
+        temperature, humidity, pressure, altitude = 25.0, 50.0, 1013.25, 100.0
         self.data = {
             'timestamp': datetime.now(self.timezone),
-            # 'altitude': altitude,
-            # 'temperature': temperature,
-            # 'humidity': humidity,
-            # 'pressure': pressure,
+            'altitude': altitude,
+            'temperature': temperature,
+            'humidity': humidity,
+            'pressure': pressure,
             'latitude': -1,
             'longitude': -1,
             'accel_x': 0,
