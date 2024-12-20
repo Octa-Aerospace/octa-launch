@@ -13,6 +13,9 @@
   </tr>
 </table>
 
+> 🚧 This project is currently under development 
+
+
 ## Packages 📦
 
 - `packages/cansat` 🛰️: Python codebase for the nanosatellite device.
