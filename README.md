@@ -1,6 +1,11 @@
 # OctaSat Monorepo 🚀
 
+![Raspberry Pi](https://img.shields.io/badge/-Raspberry_Pi-C51A4A?style=for-the-badge&logo=Raspberry-Pi)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+
 Welcome to the OctaSat monorepo! This is an open-source CanSat prototype designed for stratospheric exploration, developed by the innovative team at Octa Aerospace in Chile. Our aim is to create a fully open-source educational kit to inspire and educate students and hobbyists about space exploration.
+
+
 
 > **🚧 This project is currently under development. 🚧**
 
