@@ -5,7 +5,7 @@
 
 <table>
   <tr>
-    <td>Welcome to the OctaSat monorepo! This is an open-source CanSat prototype designed for stratospheric exploration by the team at Octa Aerospace in Chile. Our aim is to create a fully open-source educational kit to inspire and educate students and hobbyists about space exploration.
+    <td>Welcome to the OctaSat monorepo! This is an open-source CanSat designed for stratospheric exploration by the team at Octa Aerospace in Chile. Our aim is to create a fully open-source educational kit to inspire and educate students and hobbyists about space exploration.
     </td>
     <td>
       <img src="https://github.com/user-attachments/assets/69b7834d-f467-487a-bf44-4b9683f170c6" width="1200"/>
