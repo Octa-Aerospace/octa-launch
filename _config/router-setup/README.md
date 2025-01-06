@@ -3,7 +3,7 @@
 
 ### Beforehand connection to the device
 
-You must first connect or get access to your pi device via SSH, mini HDMI, or any other method you prefer, and then follow the steps below from the terminal.
+- You must first connect or get access to your pi device via SSH, mini HDMI, or any other method you prefer, and then follow the steps below from the terminal.
 
 
 ### Setting up the network connection
