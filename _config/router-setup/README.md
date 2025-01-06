@@ -1,6 +1,14 @@
 ## Notes to setup a router/wifi connection with a device
 
 
+### Beforehand connection to the device
+
+You must first connect or get access to your pi device via SSH, mini HDMI, or any other method you prefer, and then follow the steps below from the terminal.
+
+
+### Setting up the network connection
+
+
 1. **Make the runner script executable**
 
 ```bash
